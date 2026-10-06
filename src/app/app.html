@@ -1,0 +1,43 @@
+<mat-toolbar class="toolbar">
+  <mat-icon class="logo">dynamic_form</mat-icon>
+  <input
+    class="title-input"
+    aria-label="Form title"
+    [ngModel]="formService.title()"
+    (ngModelChange)="formService.setTitle($event)"
+  />
+  <span class="spacer"></span>
+
+  <mat-button-toggle-group
+    hideSingleSelectionIndicator
+    [value]="mode()"
+    (change)="mode.set($event.value)"
+    aria-label="Mode"
+  >
+    <mat-button-toggle value="edit"><mat-icon>edit</mat-icon> Edit</mat-button-toggle>
+    <mat-button-toggle value="preview"><mat-icon>visibility</mat-icon> Preview</mat-button-toggle>
+  </mat-button-toggle-group>
+
+  <span class="spacer"></span>
+
+  <input #fileInput type="file" accept=".json,application/json" hidden (change)="importJson(fileInput)" />
+  <button mat-button matTooltip="Load a form from a JSON schema" (click)="fileInput.click()">
+    <mat-icon>upload_file</mat-icon> Import
+  </button>
+  <button mat-button matTooltip="Remove all fields" (click)="clear()">
+    <mat-icon>delete_sweep</mat-icon> Clear
+  </button>
+  <button mat-flat-button (click)="exportCode()">
+    <mat-icon>code</mat-icon> Export code
+  </button>
+</mat-toolbar>
+
+@if (mode() === 'edit') {
+  <main class="builder">
+    <aside class="side left"><app-field-types-panel /></aside>
+    <section class="canvas"><app-form-editor /></section>
+    <aside class="side right"><app-field-settings /></aside>
+  </main>
+} @else {
+  <main class="preview"><app-form-preview /></main>
+}

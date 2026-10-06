@@ -1,0 +1,56 @@
+<div class="canvas" (click)="formService.selectField(null)">
+  <div class="rows" cdkDropList (cdkDropListDropped)="onRowDrop($event)" [cdkDropListConnectedTo]="[]">
+    @for (row of rows(); track row.id; let i = $index) {
+      <div class="row" cdkDrag cdkDragLockAxis="y">
+        <div class="row-header">
+          <span class="row-handle" cdkDragHandle matTooltip="Drag to reorder rows">
+            <mat-icon>drag_indicator</mat-icon>
+          </span>
+          <span class="row-title">Row {{ i + 1 }}</span>
+          <span class="spacer"></span>
+          <button mat-icon-button matTooltip="Delete row" (click)="formService.deleteRow(row.id); $event.stopPropagation()">
+            <mat-icon>delete_outline</mat-icon>
+          </button>
+        </div>
+
+        <div
+          class="row-fields"
+          cdkDropList
+          cdkDropListOrientation="horizontal"
+          [id]="rowListId(row.id)"
+          [cdkDropListData]="row.id"
+          [cdkDropListConnectedTo]="rowListIds()"
+          (cdkDropListDropped)="onFieldDrop($event)"
+        >
+          @for (field of row.fields; track field.id) {
+            <div
+              class="field"
+              cdkDrag
+              [cdkDragData]="field.id"
+              [class.selected]="field.id === selectedId()"
+              (click)="select(field.id, $event)"
+            >
+              <div class="field-toolbar">
+                <span class="field-name">{{ field.name }}</span>
+                <button mat-icon-button class="small-icon-button" matTooltip="Delete field" (click)="deleteField(field.id, $event)">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </div>
+              <app-field-renderer class="field-control" [field]="field" />
+            </div>
+          } @empty {
+            <div class="empty-row">
+              <mat-icon>add_circle_outline</mat-icon>
+              Drop fields here
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+
+  <button mat-stroked-button class="add-row" (click)="formService.addRow(); $event.stopPropagation()">
+    <mat-icon>add</mat-icon>
+    Add row
+  </button>
+</div>

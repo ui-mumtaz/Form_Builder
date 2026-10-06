@@ -1,0 +1,47 @@
+{
+  "title": "Contact Us",
+  "rows": [
+    {
+      "id": "r1",
+      "fields": [
+        { "id": "f1", "type": "text", "name": "firstName", "label": "First name", "placeholder": "Jane", "required": true, "minLength": 2 },
+        { "id": "f2", "type": "text", "name": "lastName", "label": "Last name", "placeholder": "Doe", "required": true }
+      ]
+    },
+    {
+      "id": "r2",
+      "fields": [
+        { "id": "f3", "type": "email", "name": "email", "label": "Email", "placeholder": "name@example.com", "required": true },
+        { "id": "f4", "type": "number", "name": "age", "label": "Age", "required": false, "min": 18, "max": 120 }
+      ]
+    },
+    {
+      "id": "r3",
+      "fields": [
+        { "id": "f5", "type": "select", "name": "topic", "label": "Topic", "placeholder": "Select a topic", "required": true,
+          "options": [ { "label": "Sales", "value": "sales" }, { "label": "Support", "value": "support" } ] },
+        { "id": "f6", "type": "date", "name": "preferredDate", "label": "Preferred date", "required": false }
+      ]
+    },
+    {
+      "id": "r4",
+      "fields": [
+        { "id": "f7", "type": "radio", "name": "contactMethod", "label": "Contact me by", "required": true,
+          "options": [ { "label": "Email", "value": "email" }, { "label": "Phone", "value": "phone" } ] }
+      ]
+    },
+    {
+      "id": "r5",
+      "fields": [
+        { "id": "f8", "type": "textarea", "name": "message", "label": "Message", "placeholder": "How can we help?", "required": true, "maxLength": 500, "rows": 4 }
+      ]
+    },
+    {
+      "id": "r6",
+      "fields": [
+        { "id": "f9", "type": "checkbox", "name": "terms", "label": "I agree to the terms", "required": true },
+        { "id": "f10", "type": "toggle", "name": "newsletter", "label": "Subscribe to newsletter", "required": false }
+      ]
+    }
+  ]
+}

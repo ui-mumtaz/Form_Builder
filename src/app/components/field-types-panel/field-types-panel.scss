@@ -1,0 +1,50 @@
+:host {
+  display: block;
+  padding: 16px;
+}
+
+.panel-title {
+  margin: 0;
+  font: var(--mat-sys-title-medium);
+}
+
+.panel-subtitle {
+  margin: 4px 0 16px;
+  font: var(--mat-sys-body-small);
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.field-type-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field-type {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: var(--mat-sys-corner-small);
+  border: 1px solid var(--mat-sys-outline-variant);
+  background: var(--mat-sys-surface-container-lowest);
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-medium);
+  cursor: grab;
+  user-select: none;
+  transition: background 120ms, border-color 120ms;
+
+  &:hover {
+    background: var(--mat-sys-surface-container-high);
+    border-color: var(--mat-sys-primary);
+  }
+
+  mat-icon {
+    color: var(--mat-sys-primary);
+  }
+}
+
+.drag-preview {
+  box-shadow: var(--mat-sys-level3);
+  width: 200px;
+}

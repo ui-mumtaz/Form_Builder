@@ -1,0 +1,50 @@
+:host {
+  display: block;
+  padding: 24px;
+}
+
+.preview-card {
+  max-width: 960px;
+  margin: 0 auto 24px;
+}
+
+mat-card-content {
+  padding-top: 16px;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-bottom: 8px;
+}
+
+.form-field {
+  flex: 1 1 200px;
+  min-width: 0;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.empty {
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.ok {
+  color: var(--mat-sys-primary);
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
+}
+
+pre {
+  margin: 0;
+  padding: 12px;
+  border-radius: var(--mat-sys-corner-small);
+  background: var(--mat-sys-surface-container);
+  overflow: auto;
+}

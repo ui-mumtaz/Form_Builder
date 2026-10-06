@@ -1,0 +1,21 @@
+.intro {
+  margin-top: 0;
+}
+
+.file-name {
+  margin: 12px 0 6px;
+  font: var(--mat-sys-label-medium);
+  font-family: monospace;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+pre {
+  margin: 0;
+  max-height: 55vh;
+  padding: 12px;
+  overflow: auto;
+  border-radius: var(--mat-sys-corner-small);
+  background: var(--mat-sys-surface-container);
+  font-size: 13px;
+  line-height: 1.5;
+}

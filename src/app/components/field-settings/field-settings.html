@@ -1,0 +1,111 @@
+@if (field(); as f) {
+  <div class="header">
+    <div>
+      <h3 class="panel-title">Field Settings</h3>
+      <p class="panel-subtitle">{{ definition()?.label }}</p>
+    </div>
+    <button mat-icon-button matTooltip="Delete field" (click)="delete()">
+      <mat-icon>delete_outline</mat-icon>
+    </button>
+  </div>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Label</mat-label>
+    <input matInput [ngModel]="f.label" (ngModelChange)="update('label', $event)" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Field name (form control)</mat-label>
+    <input matInput [ngModel]="f.name" (ngModelChange)="update('name', $event)" />
+    @if (nameError()) {
+      <mat-hint class="error-hint">{{ nameError() }}</mat-hint>
+    }
+  </mat-form-field>
+
+  @if (has('placeholder')) {
+    <mat-form-field appearance="outline">
+      <mat-label>Placeholder</mat-label>
+      <input matInput [ngModel]="f.placeholder" (ngModelChange)="update('placeholder', $event)" />
+    </mat-form-field>
+  }
+
+  @if (has('hint')) {
+    <mat-form-field appearance="outline">
+      <mat-label>Hint text</mat-label>
+      <input matInput [ngModel]="f.hint" (ngModelChange)="update('hint', $event)" />
+    </mat-form-field>
+  }
+
+  @if (has('rows')) {
+    <mat-form-field appearance="outline">
+      <mat-label>Rows</mat-label>
+      <input matInput type="number" min="1" [ngModel]="f.rows" (ngModelChange)="updateNumber('rows', $event)" />
+    </mat-form-field>
+  }
+
+  <mat-divider />
+  <h4 class="section-title">Validation</h4>
+
+  <mat-checkbox [ngModel]="f.required" (ngModelChange)="update('required', $event)">Required</mat-checkbox>
+
+  @if (has('length')) {
+    <div class="pair">
+      <mat-form-field appearance="outline">
+        <mat-label>Min length</mat-label>
+        <input matInput type="number" min="0" [ngModel]="f.minLength" (ngModelChange)="updateNumber('minLength', $event)" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Max length</mat-label>
+        <input matInput type="number" min="0" [ngModel]="f.maxLength" (ngModelChange)="updateNumber('maxLength', $event)" />
+      </mat-form-field>
+    </div>
+  }
+
+  @if (has('range')) {
+    <div class="pair">
+      <mat-form-field appearance="outline">
+        <mat-label>Min value</mat-label>
+        <input matInput type="number" [ngModel]="f.min" (ngModelChange)="updateNumber('min', $event)" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Max value</mat-label>
+        <input matInput type="number" [ngModel]="f.max" (ngModelChange)="updateNumber('max', $event)" />
+      </mat-form-field>
+    </div>
+  }
+
+  @if (has('pattern')) {
+    <mat-form-field appearance="outline">
+      <mat-label>Pattern (regex)</mat-label>
+      <input matInput [ngModel]="f.pattern" (ngModelChange)="update('pattern', $event)" placeholder="^[A-Z].*" />
+    </mat-form-field>
+  }
+
+  @if (has('options')) {
+    <mat-divider />
+    <div class="options-header">
+      <h4 class="section-title">Options</h4>
+      <button mat-button (click)="addOption()"><mat-icon>add</mat-icon>Add</button>
+    </div>
+    @for (o of f.options ?? []; track $index; let i = $index) {
+      <div class="option">
+        <mat-form-field appearance="outline" subscriptSizing="dynamic">
+          <mat-label>Label</mat-label>
+          <input matInput [ngModel]="o.label" (ngModelChange)="updateOption(i, { label: $event })" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" subscriptSizing="dynamic">
+          <mat-label>Value</mat-label>
+          <input matInput [ngModel]="o.value" (ngModelChange)="updateOption(i, { value: $event })" />
+        </mat-form-field>
+        <button mat-icon-button matTooltip="Remove option" (click)="removeOption(i)">
+          <mat-icon>remove_circle_outline</mat-icon>
+        </button>
+      </div>
+    }
+  }
+} @else {
+  <div class="empty">
+    <mat-icon>tune</mat-icon>
+    <p>Select a field on the form to edit its settings.</p>
+  </div>
+}

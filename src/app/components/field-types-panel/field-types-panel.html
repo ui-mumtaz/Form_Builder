@@ -1,0 +1,26 @@
+<h3 class="panel-title">Field Types</h3>
+<p class="panel-subtitle">Drag a field onto the form, or click to add it.</p>
+<div
+  class="field-type-list"
+  cdkDropList
+  [id]="listId"
+  [cdkDropListConnectedTo]="rowListIds()"
+  cdkDropListSortingDisabled
+  [cdkDropListEnterPredicate]="noEnter"
+>
+  @for (def of fieldTypes; track def.type) {
+    <div class="field-type" cdkDrag [cdkDragData]="def.type" (click)="add(def.type)">
+      <mat-icon>{{ def.icon }}</mat-icon>
+      <span>{{ def.label }}</span>
+      <!-- keep the item visible in the palette while it is dragged -->
+      <div *cdkDragPlaceholder class="field-type">
+        <mat-icon>{{ def.icon }}</mat-icon>
+        <span>{{ def.label }}</span>
+      </div>
+      <div *cdkDragPreview class="field-type drag-preview">
+        <mat-icon>{{ def.icon }}</mat-icon>
+        <span>{{ def.label }}</span>
+      </div>
+    </div>
+  }
+</div>
